@@ -2,37 +2,36 @@ const express = require("express")
 const app = express()
 const port = 3000
 
-const client = [
-    {
-        id: 1,
-        fullName: "Козлов Пётр Степанович",
-        gender: "м",
-        phoneNumber: "89937689802",
-        OrderID: 1,
-    },
-    {
-        id: 2,
-        fullName: "Орехов Арсений Матвеевич",
-        gender: "м",
-        phoneNumber: "89986529838",
-        OrderID: 2,
-    },
-    {
-        id: 3,
-        fullName: "Богомолова Ангелина Петровна",
-        gender: "ж",
-        phoneNumber: "89507836621",
-        OrderID: 3,
-    }
-]
 
-app.get('/', (req, res) => {
-    res.set({
-        "Content-Type": "application/json",
-    })
-    res.json(JSON.stringify(client))
+
+var connection = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'root',
+    password : '',
+    database: "sdfsdfsd"
+  });
+  
+
+
+
+app.get('/clients', (req, res) => {
+
+    connection.connect();
+
+    connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
+      if (err) throw err;
+      console.log('The solution is: ', rows[0].solution);
+    });
+    
+    connection.end();
+    
+
+    res.json(clients)
 })
 
+app.post('/', (req, res) => {
+    res.send('hello post')  
+})    
 app.listen(port, () => {
     console.log(`Мы начали прослушивать ${port} порт.`)
-})
+});
