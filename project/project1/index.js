@@ -13,8 +13,8 @@ const pool = mysql.createPool({
 });
 
 
-app.delete('/Students', function (req, res) {
-    pool.query("DELETE * FROM `Students` where `gender`= 'Man' ", (err, data) => {
+app.delete('/Students/:id', function (req, res) {
+    pool.query("DELETE * FROM `Students` where `id`= " + req.params.id , (err, data) => {
         if(err) return  console.log(err);
         res.json( {
             Students: data
@@ -22,34 +22,8 @@ app.delete('/Students', function (req, res) {
     });
   });
 
-  app.get('/Teacher', function (req, res) {
-    pool.query("SELECT * FROM Teacher", (err, data) => {
-        if(err) return  console.log(err);
-        res.json( {
-            Teacher: data
-        });
-    });
-  });
 
-  app.get('/Format', function (req, res) {
-    pool.query("SELECT * FROM Format", (err, data) => {
-        if(err) return  console.log(err);
-        res.json( {
-            Format: data
-        });
-    });
-  });
-
-  app.get('/Groups', function (req, res) {
-    pool.query("SELECT * FROM Groups", (err, data) => {
-        if(err) return  console.log(err);
-        res.json( {
-          Groups: data
-        });
-    });
-  });
-
-  app.post("/Students", )
+  
 
 
 
