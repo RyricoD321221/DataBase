@@ -8,26 +8,50 @@ const pool = mysql.createPool({
     connectionLimit: 5,
     host: "localhost",
     user: "root",
-    database: "sdfsdfsd",
+    database: "itcursi",
     password: ""
 });
 
 
-app.get('/students', function (req, res) {
-    pool.query("SELECT * FROM students", (err, data) => {
+app.delete('/Students', function (req, res) {
+    pool.query("DELETE * FROM `Students` where `gender`= 'Man' ", (err, data) => {
         if(err) return  console.log(err);
         res.json( {
-            students: data
+            Students: data
         });
     });
   });
 
-  app.post('/students', function (req, res) {
-    pool.query("INSERT into students values" (err, data) => {
+  app.get('/Teacher', function (req, res) {
+    pool.query("SELECT * FROM Teacher", (err, data) => {
         if(err) return  console.log(err);
-        res.json("Студент Добавлен")
+        res.json( {
+            Teacher: data
+        });
     });
   });
+
+  app.get('/Format', function (req, res) {
+    pool.query("SELECT * FROM Format", (err, data) => {
+        if(err) return  console.log(err);
+        res.json( {
+            Format: data
+        });
+    });
+  });
+
+  app.get('/Groups', function (req, res) {
+    pool.query("SELECT * FROM Groups", (err, data) => {
+        if(err) return  console.log(err);
+        res.json( {
+          Groups: data
+        });
+    });
+  });
+
+  app.post("/Students", )
+
+
 
   app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
