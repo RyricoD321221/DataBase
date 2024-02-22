@@ -14,18 +14,13 @@ const pool = mysql.createPool({
 
 
 app.delete('/Students/:id', function (req, res) {
-    pool.query("DELETE * FROM `Students` where `id`= " + req.params.id , (err, data) => {
+    pool.query("DELETE FROM `Students` WHERE `id`=" + req.params.id, (err, data) => {
         if(err) return  console.log(err);
         res.json( {
             Students: data
         });
     });
   });
-
-
-  
-
-
 
   app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
