@@ -14,8 +14,8 @@ const pool = mysql.createPool({
 
 
 app.get('/Students', function (req, res) {
-    pool.query("SELECT * FROM  Students" + req.params.id, (err, data) => {
-        if(err) return  console.log(err);
+    pool.query("SELECT * FROM  Students", function(err, data)  {
+        if(err) return console.log(err);
         res.json( {
             Students: data
         });
